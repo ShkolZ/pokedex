@@ -10,16 +10,22 @@ import (
 func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
+	fmt.Println("To Start using Pokedex start with 'help' command!")
+
 	for {
 		fmt.Print("Pokedex > ")
 		scanner.Scan()
 		input := cleanInput(scanner.Text())
 		commandName := strings.ToLower(input[0])
+		var arg string
+		if len(input) > 1 {
+			arg = strings.ToLower(input[1])
+		}
 
 		command, exists := getCommands()[commandName]
 
 		if exists {
-			err := command.callback(cfg)
+			err := command.callback(cfg, arg)
 			if err != nil {
 				fmt.Print(err)
 			}

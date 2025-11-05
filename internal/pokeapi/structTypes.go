@@ -8,3 +8,12 @@ type Locations struct {
 		Name string `json:"name"`
 	} `json:"results"`
 }
+
+type PokemonEncounters struct {
+	PokemonEncounters []struct {
+		Pokemon struct {
+			Name string `json:"name"`
+			Url  string `json:"url"`
+		} `json:"pokemon"`
+	} `json:"pokemon_encounters"`
+}
