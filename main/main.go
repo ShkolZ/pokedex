@@ -10,6 +10,13 @@ type config struct {
 	pokedex      map[string]Pokemon
 	prevPokemon  Pokemon
 	tryCount     int
+	commands     []string
+}
+
+type Node struct {
+	Val  string
+	Prev *Node
+	Next *Node
 }
 
 func main() {
@@ -17,6 +24,7 @@ func main() {
 	cfg := &config{
 		nextLocation: pokeapi.StartUrl,
 		pokedex:      make(map[string]Pokemon),
+		commands:     make([]string, 0),
 	}
 
 	startRepl(cfg)
